@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h1>My shopping list</h1>
+  <div>
+    Enter a new item:
+    <input type="text" id="newItem">
+    <button id="submit">Add item</button>
+  </div>
+  <ul id="item-list">
+    
+  </ul>
+  <script>
+
+    let cnt = 0
+    const btn = document.querySelector('#submit')
+    const newItem = document.querySelector('#newItem')
+    const itemList = document.querySelector('#item-list')
+    
+    btn.addEventListener('click', event => {
+      if (newItem.value != ''){
+        const item = document.createElement('li')
+        
+        item.innerText = newItem.value
+        newItem.value = ''
+        const deleteBtn = document.createElement('button')
+        deleteBtn.innerText = '삭제하기'
+        deleteBtn.addEventListener('click', event =>{
+          itemList.removeChild(item)
+        })
+        item.appendChild(deleteBtn)
+        
+        itemList.insertBefore(item, itemList.firstElementChild)
+      
+        return
+      }
+      alert('반드시 무언가를 입력하세요')
+
+    })
+    
+
+  const header = document.querySelector('h1')
+  console.log(header)
+  header.innerText = 'Happy Hacking!'
+
+  </script>
+</body>
+</html>

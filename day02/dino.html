@@ -27,6 +27,7 @@
     <script>
       const bg = document.querySelector('div.bg')
       const dino = bg.querySelector('#dino')
+      dino.style.position = 'absolute'
 
       // 대상에 요소삭제
       // dino.remove() // 대상을 직접삭제
@@ -35,10 +36,68 @@
       // bg.removeChild(dino) // 특정 자식 삭제
 
       // 실습 : body 에 자식 element 가 하나도 없을 때 까지 자식 element를 삭제하는 코드 작성.
-      body = document.body
-      while (body.children.length >= 1) {
-        body.firstElementChild.remove()
+      // body = document.body
+      // while (body.children.length >= 1) {
+      //   body.firstElementChild.remove()
+      // }
+
+      // 새로운 요소 생성 - document.createElement
+
+      // dino.remove()
+      // const newDino = document.createElement('img')
+      // newDino.id = 'newDino'
+      // newDino.src = 'https://store-images.s-microsoft.com/image/apps.38351.14426311725358695.736eb785-1d29-478c-a909-1900849773e9.4247f5ee-1daa-4c97-96c2-23868f1fbc45?mode=scale&q=90&h=200&w=200&background=%230078D7'
+      // newDino.alt = 'dino'
+
+      // 대상에 요소 추가
+      // bg.appendChild(newDino)
+      // bg.insertBefore(newDino, bg.firstElementChild)
+
+      // dino 를 클릭 시 consol 창에 '아야!' 가 입력되는 이벤트를 등록!
+      let cnt = 0
+      let dx = 0
+      let dy = 0
+      dino.addEventListener('click', event => {console.log(`아야!${++cnt}`)})
+      document.addEventListener('keydown', event => {
+
+        // 방향키를 눌렀을 때만 event 를 출력할 수 있도록 조건문을 작성하세요
+        switch(event.key) {
+          case 'ArrowUp':{
+            console.log('위')
+            dy -= 20
+            console.log(dy)
+            dino.style.marginTop = `${dy}px`
+            break
+          }
+          case 'ArrowDown':{
+            console.log('아래')
+            dy += 20
+            console.log(dy)
+            dino.style.marginTop = `${dy}px`
+            break
+          }
+          case 'ArrowLeft':{
+            console.log('왼쪽')
+            dx -= 20
+            dino.style.marginLeft = `${dx}px`
+            break
+          }
+          case 'ArrowRight':{
+            console.log('오른쪽')
+            dx += 20
+            dino.style.marginLeft = `${dx}px`
+            break
+          }
+        }
       }
+      )
+      dino.addEventListener('mouseenter', event => {
+        const lo_x = window.innerWidth * Math.random()
+        const lo_y = window.innerHeight * Math.random()
+        dino.style.left = `${lo_x}px`
+        dino.style.top = `${lo_y}px`
+      })
+      
     </script>
   </body>
 </html>
